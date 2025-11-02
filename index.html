@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Know Bihar | बिहार ज्ञानकोष</title>
+    <title>Bihar Vrittant | बिहार वृतांत</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         * {
@@ -48,7 +48,7 @@
         .app-header {
             background: linear-gradient(135deg, var(--bihar-saffron) 0%, var(--bihar-red) 50%, var(--bihar-green) 100%);
             color: white;
-            padding: 20px;
+            padding: 15px 20px;
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -70,20 +70,209 @@
             50% { transform: translateY(-10px); }
         }
 
-        .app-title {
-            font-size: 28px;
-            font-weight: 800;
-            margin-bottom: 8px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             position: relative;
             z-index: 1;
         }
 
-        .app-subtitle {
-            font-size: 16px;
-            opacity: 0.9;
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .state-emblem {
             position: relative;
-            z-index: 1;
+        }
+
+        .bihar-logo {
+            width: 60px;
+            height: 60px;
+            filter: brightness(0) invert(1);
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            padding: 8px;
+        }
+
+        .fallback-logo {
+            width: 60px;
+            height: 60px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+        }
+
+        .header-text {
+            flex: 1;
+        }
+
+        .app-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 3px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+
+        .app-subtitle {
+            font-size: 13px;
+            opacity: 0.9;
+            font-weight: 400;
+            line-height: 1.2;
+        }
+
+        .header-badge {
+            display: flex;
+            align-items: center;
+        }
+
+        .info-badge {
+            background: rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 20px;
+            padding: 8px 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+        }
+
+        .info-badge i {
+            font-size: 14px;
+        }
+
+        /* Hero Section Styles */
+        .hero-section {
+            margin: 0 20px 20px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+        }
+
+        .hero-slider-container {
+            position: relative;
+            width: 100%;
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .hero-slider {
+            position: relative;
+            width: 100%;
+            height: 300px;
+        }
+
+        .hero-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.2s ease-in-out;
+        }
+
+        .hero-slide.active {
+            opacity: 1;
+        }
+
+        .hero-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 15px;
+            background: rgba(0,0,0,0.05);
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 15px;
+            background: rgba(0,0,0,0.05);
+        }
+
+        .hero-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+            padding: 30px 20px 20px;
+            text-align: center;
+        }
+
+        .hero-caption h3 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero-caption p {
+            font-size: 16px;
+            color: rgba(255,255,255,0.9);
+            line-height: 1.4;
+        }
+
+        .hero-dots {
+            text-align: center;
+            padding: 15px;
+            background: rgba(255,255,255,0.9);
+        }
+
+        .hero-dot {
+            height: 10px;
+            width: 10px;
+            margin: 0 4px;
+            background-color: rgba(0,0,0,0.3);
+            border-radius: 50%;
+            display: inline-block;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .hero-dot.active, .hero-dot:hover {
+            background-color: var(--bihar-saffron);
+            transform: scale(1.2);
+        }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                margin: 0 15px 15px;
+            }
+
+            .hero-slider {
+                height: 200px;
+            }
+
+            .hero-caption {
+                padding: 20px 15px 15px;
+            }
+
+            .hero-caption h3 {
+                font-size: 18px;
+                margin-bottom: 5px;
+            }
+
+            .hero-caption p {
+                font-size: 13px;
+            }
         }
 
         /* Quick Stats */
@@ -211,7 +400,7 @@
         .tourism-scroll {
             display: flex;
             overflow-x: auto;
-            gap: 15px;
+            gap: 12px;
             padding: 10px 0;
             scrollbar-width: none;
             -ms-overflow-style: none;
@@ -222,25 +411,60 @@
         }
 
         .tourism-card {
-            min-width: 150px;
+            min-width: 140px;
+            max-width: 140px;
             background: linear-gradient(135deg, var(--bihar-saffron), var(--bihar-gold));
             border-radius: 15px;
-            padding: 15px;
+            padding: 12px;
             text-align: center;
             color: white;
             box-shadow: 0 8px 25px rgba(255,153,51,0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tourism-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(255,153,51,0.4);
         }
 
         .tourism-image {
             width: 100%;
-            height: 80px;
-            background: rgba(255,255,255,0.2);
+            height: 70px;
             border-radius: 10px;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 30px;
+            margin-bottom: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .tourism-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .tourism-card h4 {
+            font-size: 12px;
+            font-weight: 600;
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        @media (max-width: 768px) {
+            .tourism-card {
+                min-width: 120px;
+                max-width: 120px;
+                padding: 10px;
+            }
+            
+            .tourism-image {
+                height: 60px;
+            }
+            
+            .tourism-card h4 {
+                font-size: 11px;
+            }
         }
 
         /* Action Buttons */
@@ -386,6 +610,53 @@
                 margin: 15px;
                 padding: 15px;
             }
+
+            .app-header {
+                padding: 12px 15px;
+            }
+
+            .header-content {
+                flex-direction: row;
+                gap: 10px;
+                text-align: left;
+                align-items: center;
+            }
+
+            .logo-section {
+                justify-content: flex-start;
+                gap: 10px;
+            }
+
+            .bihar-logo {
+                width: 45px;
+                height: 45px;
+                padding: 6px;
+            }
+
+            .fallback-logo {
+                width: 45px;
+                height: 45px;
+                font-size: 20px;
+            }
+
+            .app-title {
+                font-size: 18px;
+                margin-bottom: 2px;
+            }
+
+            .app-subtitle {
+                font-size: 11px;
+                line-height: 1.1;
+            }
+
+            .header-badge {
+                margin-left: auto;
+            }
+
+            .info-badge {
+                padding: 6px 10px;
+                font-size: 10px;
+            }
         }
 
         /* Scrollbar Styling */
@@ -475,6 +746,124 @@
             background: var(--bihar-red);
             transform: translateY(-2px);
         }
+
+        /* Universal Slider System - Works Everywhere */
+        .image-slider-container, .hero-slider-container {
+            position: relative;
+            width: 100%;
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            overflow: hidden;
+            margin: 15px 0;
+            box-shadow: var(--card-shadow);
+        }
+
+        .image-slider, .hero-slider {
+            position: relative;
+            width: 100%;
+            height: 250px;
+        }
+
+        .slide, .hero-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.2s ease-in-out;
+        }
+
+        .slide.active, .hero-slide.active {
+            opacity: 1;
+        }
+
+        .slide img, .hero-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 15px;
+            background: rgba(0,0,0,0.05);
+        }
+
+        .slide-caption, .hero-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+            padding: 30px 20px 20px;
+            text-align: center;
+        }
+
+        .slide-caption h3, .hero-caption h3 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .slide-caption p, .hero-caption p {
+            font-size: 16px;
+            color: rgba(255,255,255,0.9);
+            line-height: 1.4;
+        }
+
+        .slide-caption {
+            font-size: 14px;
+            font-weight: 600;
+            padding: 20px 15px 15px;
+        }
+
+        .slider-dots, .hero-dots {
+            text-align: center;
+            padding: 15px;
+            background: rgba(255,255,255,0.9);
+        }
+
+        .dot, .hero-dot {
+            height: 10px;
+            width: 10px;
+            margin: 0 4px;
+            background-color: rgba(0,0,0,0.3);
+            border-radius: 50%;
+            display: inline-block;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active, .dot:hover, .hero-dot.active, .hero-dot:hover {
+            background-color: var(--bihar-saffron);
+            transform: scale(1.2);
+        }
+
+        @media (max-width: 768px) {
+            .image-slider, .hero-slider {
+                height: 200px;
+            }
+
+            .slide img, .hero-slide img {
+                object-fit: cover;
+            }
+
+            .slide-caption, .hero-caption {
+                font-size: 12px;
+                padding: 15px 10px 10px;
+            }
+
+            .hero-caption h3 {
+                font-size: 18px;
+                margin-bottom: 5px;
+            }
+
+            .hero-caption p {
+                font-size: 13px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -483,8 +872,61 @@
 
         <!-- App Header -->
         <div class="app-header">
-            <div class="app-title">🏠 Know Bihar</div>
-            <div class="app-subtitle">बिहार ज्ञानकोष | Complete Bihar Profile</div>
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="state-emblem">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Emblem_of_Bihar.svg/120px-Emblem_of_Bihar.svg.png" alt="Bihar Government" class="bihar-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                        <div class="fallback-logo" style="display:none;">
+                            <i class="fas fa-university"></i>
+                        </div>
+                    </div>
+                    <div class="header-text">
+                        <div class="app-title">Bihar Vrittant</div>
+                        <div class="app-subtitle">बिहार वृतांत | बिहार की संपूर्ण जानकारी</div>
+                    </div>
+                </div>
+                <div class="header-badge">
+                    <div class="info-badge">
+                        <i class="fas fa-info-circle"></i>
+                        <span>Info Hub</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hero Section with Key Images -->
+        <div class="hero-section">
+            <div class="image-slider-container">
+                <div class="image-slider">
+                    <div class="slide active">
+                        <img src="#" alt="मुख्यमंत्री नीतीश कुमार" onerror="this.src='bihar_intro/cm.jpg'">
+                        <div class="slide-caption">मुख्यमंत्री नीतीश कुमार - बिहार के वर्तमान मुख्यमंत्री</div>
+                    </div>
+                    <div class="slide">
+                        <img src="#" alt="बिहार का नक्शा" onerror="this.src='bihar_intro/bihar_map.jpg'">
+                        <div class="slide-caption">बिहार का नक्शा - 38 जिले, 9 प्रमंडल</div>
+                    </div>
+                    <div class="slide">
+                        <img src="#" alt="पटना सचिवालय" onerror="this.src='bihar_intro/patna_secretariat.jpg'">
+                        <div class="slide-caption">पटना सचिवालय - बिहार सरकार का मुख्यालय</div>
+                    </div>
+                    <div class="slide">
+                        <img src="#" alt="बिहार विधानसभा" onerror="this.src='bihar_intro/bihar_assembly.jpg'">
+                        <div class="slide-caption">बिहार विधानसभा - राज्य की विधायी शक्ति</div>
+                    </div>
+                    <div class="slide">
+                        <img src="#" alt="पटना उच्च न्यायालय" onerror="this.src='bihar_intro/patna_high_court.jpg'">
+                        <div class="slide-caption">पटना उच्च न्यायालय - न्यायिक शक्ति का केंद्र</div>
+                    </div>
+                </div>
+                <div class="slider-dots">
+                    <span class="dot active" onclick="currentHeroSlide(1)"></span>
+                    <span class="dot" onclick="currentHeroSlide(2)"></span>
+                    <span class="dot" onclick="currentHeroSlide(3)"></span>
+                    <span class="dot" onclick="currentHeroSlide(4)"></span>
+                    <span class="dot" onclick="currentHeroSlide(5)"></span>
+                </div>
+            </div>
         </div>
 
         <!-- Quick Stats -->
@@ -538,9 +980,41 @@
                 <strong>पटना:</strong> 25.37°N 85.13°E | <strong>ऊँचाई समुद्र तल से:</strong> 173 फीट<br>
                 <strong>औसत वर्षा वाले दिन:</strong> 52.5 प्रति वर्ष | <strong>ग्रामीण क्षेत्र:</strong> 92,257.51 वर्ग किमी | <strong>शहरी क्षेत्र:</strong> 1,095.49 वर्ग किमी
             </div>
-            <div class="image-placeholder">
-                <i class="fas fa-mountain" style="margin-right: 10px;"></i>
-                इमेज स्लाइडर: गंगा नदी, नालंदा, बोधगया, विक्रमशिला, मधुबनी पेंटिंग
+            <div class="image-slider-container">
+                <div class="image-slider">
+                    <div class="slide active">
+                        <img src="#" alt="गंगा नदी" onerror="this.src='bihar_intro/ganga.jpg'">
+                        <div class="slide-caption">गंगा नदी - बिहार की जीवनरेखा</div>
+                    </div>
+                    <div class="slide">
+                        <img src="#" alt="नालंदा विश्वविद्यालय नवीन" onerror="this.src='bihar_intro/nalanda_university.jpg'">
+                        <div class="slide-caption">नालंदा विश्वविद्यालय - नवीन शिक्षा केंद्र</div>
+                    </div>
+                    <div class="slide">
+                        <img src="#" alt="नालंदा विश्वविद्यालय प्राचीन" onerror="this.src='bihar_intro/nalanda_university_old.jpg'">
+                        <div class="slide-caption">नालंदा विश्वविद्यालय - प्राचीन शिक्षा केंद्र</div>
+                    </div>
+                    <div class="slide">
+                        <img src="#" alt="बोधगया महाबोधि मंदिर" onerror="this.src='bihar_intro/bodh_gaya.jpg'">
+                        <div class="slide-caption">बोधगया - बुद्ध की ज्ञानप्राप्ति स्थल</div>
+                    </div>
+                    <div class="slide">
+                        <img src="#" alt="मधुबनी पेंटिंग" onerror="this.src='bihar_intro/madhubani_painting.jpg'">
+                        <div class="slide-caption">मधुबनी पेंटिंग - बिहार की पारंपरिक कला</div>
+                    </div>
+                    <div class="slide">
+                        <img src="#" alt="वैशाली स्तूप" onerror="this.src='bihar_intro/vaishali.jpg'">
+                        <div class="slide-caption">वैशाली - विश्व का पहला गणराज्य</div>
+                    </div>
+                </div>
+                <div class="slider-dots">
+                    <span class="dot active" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                    <span class="dot" onclick="currentSlide(3)"></span>
+                    <span class="dot" onclick="currentSlide(4)"></span>
+                    <span class="dot" onclick="currentSlide(5)"></span>
+                    <span class="dot" onclick="currentSlide(6)"></span>
+                </div>
             </div>
             <button class="action-btn" onclick="alert('विस्तृत इतिहास पेज खुलेगा');">
                 <i class="fas fa-book"></i> पूर्ण इतिहास पढ़ें
@@ -1039,26 +1513,157 @@
             </div>
             <div class="tourism-scroll">
                 <div class="tourism-card">
-                    <div class="tourism-image"><i class="fas fa-om"></i></div>
-                    <div>बोध गया</div>
+                    <div class="tourism-image">
+                        <img src="https://media.istockphoto.com/id/1129899392/photo/big-statue-of-buddha-bodh-gaya-india-famous-buddhist-place-of-interest.webp?a=1&b=1&s=612x612&w=0&k=20&c=wJrBH-prRWst1nbv2Zl2oC3PgT2N9LsaBKKUKQDEk3c=" alt="बोध गया" onerror="this.src='bihar_tourism/bodh_gaya.jpg'">
+                    </div>
+                    <h4>बोध गया</h4>
                 </div>
                 <div class="tourism-card">
-                    <div class="tourism-image"><i class="fas fa-university"></i></div>
-                    <div>नालंदा</div>
+                    <div class="tourism-image">
+                        <img src="data:image/jpeg;base64,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" alt="नालंदा" onerror="this.src='bihar_tourism/nalanda.jpg'">
+                    </div>
+                    <h4>नालंदा विश्वविद्यालय</h4>
                 </div>
                 <div class="tourism-card">
-                    <div class="tourism-image"><i class="fas fa-mountain"></i></div>
-                    <div>राजगीर</div>
+                    <div class="tourism-image">
+                        <img src="https://nalandadarpan.com/wp-content/uploads/2024/11/Now-Rajgir-is-becoming-synonymous-with-modern-tourism-and-sports.jpg" alt="राजगीर" onerror="this.src='bihar_tourism/rajgir.jpg'">
+                    </div>
+                    <h4>राजगीर</h4>
                 </div>
                 <div class="tourism-card">
-                    <div class="tourism-image"><i class="fas fa-landmark"></i></div>
-                    <div>वैशाली</div>
+                    <div class="tourism-image">
+                        <img src="https://www.esamskriti.com/essays/docfile/1032.jpg" alt="वैशाली" onerror="this.src='bihar_tourism/vaishali.jpg'">
+                    </div>
+                    <h4>वैशाली</h4>
                 </div>
                 <div class="tourism-card">
-                    <div class="tourism-image"><i class="fas fa-palette"></i></div>
-                    <div>मधुबनी आर्ट</div>
+                    <div class="tourism-image">
+                        <img src="https://mediaindia.eu/wp-content/uploads/2022/10/cq5dam.web_.1280.765-2.webp" alt="पावापुरी" onerror="this.src='bihar_tourism/pawapuri.jpg'">
+                    </div>
+                    <h4>पावापुरी</h4>
+                </div>
+                <div class="tourism-card">
+                    <div class="tourism-image">
+                        <img src="https://media.assettype.com/outlooktraveller%2F2024-06%2F8bc8141a-9442-4c0a-8d38-319179621bb5%2Fsasa1.jpg?w=480&auto=format%2Ccompress" alt="सासाराम" onerror="this.src='bihar_tourism/sasaram.jpg'">
+                    </div>
+                    <h4>सासाराम</h4>
+                </div>
+                <div class="tourism-card">
+                    <div class="tourism-image">
+                        <img src="https://travelsetu.com/apps/uploads/new_destinations_photos/destination/2024/01/06/ff79127d79f96e6525fb9df10cd91eee_1000x1000.jpg" alt="मुंगेर किला" onerror="this.src='bihar_tourism/munger_fort.jpg'">
+                    </div>
+                    <h4>मुंगेर किला</h4>
+                </div>
+                <div class="tourism-card">
+                    <div class="tourism-image">
+                        <img src="https://travelsetu.com/apps/uploads/new_destinations_photos/destination/2024/01/06/221dc4d0334a70a1b01b30769744511f_1000x1000.jpg" alt="विक्रमशिला" onerror="this.src='bihar_tourism/vikramshila.jpg'">
+                    </div>
+                    <h4>विक्रमशिला</h4>
+                </div>
+                <div class="tourism-card">
+                    <div class="tourism-image">
+                        <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/6f/b9/fd/photo1jpg.jpg?w=1200&h=-1&s=1" alt="केसरिया स्तूप" onerror="this.src='bihar_tourism/kesariya_stupa.jpg'">
+                    </div>
+                    <h4>केसरिया स्तूप</h4>
+                </div>
+                <div class="tourism-card">
+                    <div class="tourism-image">
+                        <img src="https://khabarlahariya.org/wp-content/uploads/2024/11/5c3daef27b7b2-Sonepur-Mela-Sight-Seeing-Tour.jpg" alt="सोनपुर मेला" onerror="this.src='bihar_tourism/sonepur_mela.jpg'">
+                    </div>
+                    <h4>सोनपुर मेला</h4>
+                </div>
+                <div class="tourism-card">
+                    <div class="tourism-image">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Hanuman009.jpg/250px-Hanuman009.jpg" alt="मधुबनी" onerror="this.src='bihar_tourism/madhubani.jpg'">
+                    </div>
+                    <h4>मधुबनी कला</h4>
+                </div>
+            
+                <div class="tourism-card">
+                    <div class="tourism-image">
+                        <img src="https://www.agniban.com/wp-content/uploads/2022/06/ganga-aarti-300x243.jpeg" alt="गंगा आरती" onerror="this.src='bihar_tourism/ganga_aarti.jpg'">
+                    </div>
+                    <h4>गंगा आरती</h4>
+                </div>
+                <div class="tourism-card">
+                    <div class="tourism-image">
+                        <img src="https://ik.imagekit.io/yd29mwkn4/images/uploads/gallery/large/10613.jpg?tr=w-1080,h-720" alt="वाल्मीकि नगर" onerror="this.src='bihar_tourism/valmiki_nagar.jpg'">
+                    </div>
+                    <h4>वाल्मीकि नगर</h4>
+                </div>
+                <div class="tourism-card">
+                    <div class="tourism-image">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSanODdpzoVLneHA9Lw6DsdFLMHSKVJsQp8ww&s" alt="कांवर झील" onerror="this.src='bihar_tourism/kanwar_lake.jpg'">
+                    </div>
+                    <h4>कांवर झील</h4>
+                </div>
+                <div class="tourism-card">
+                    <div class="tourism-image">
+                        <img src="https://im.rediff.com/news/2017/jan/20gandhi9.jpg?w=450&h=450" alt="भीतिहरवा आश्रम" onerror="this.src='bihar_tourism/bhitiharwa_ashram.jpg'">
+                    </div>
+                    <h4>भीतिहरवा आश्रम</h4>
+                </div>
+    
+                <div class="tourism-card">
+                    <div class="tourism-image">
+                        <img src="https://khabarlahariya.org/wp-content/uploads/2021/10/cq5dam.web_.1280.765.jpeg" alt="रोहतास किला" onerror="this.src='bihar_tourism/rohtas_fort.jpg'">
+                    </div>
+                    <h4>रोहतास किला</h4>
+                </div>
+                <div class="tourism-card">
+                    <div class="tourism-image">
+                        <img src="https://th-i.thgim.com/public/incoming/6j75jk/article68966310.ece/alternates/FREE_1200/Bettiah%20Raj.jpeg" alt="बेतिया" onerror="this.src='bihar_tourism/bettiah.jpg'">
+                    </div>
+                    <h4>बेतिया</h4>
+                </div>
+                <div class="tourism-card">
+                    <div class="tourism-image">
+                        <img src="https://media2.thrillophilia.com/images/photos/000/372/654/original/1620168905_7c86bd2e-33e2-4057-abe0-ac4c7dce7bd6.jpg?" alt="लौरिया नंदनगढ़" onerror="this.src='bihar_tourism/lauria_nandangarh.jpg'">
+                    </div>
+                    <h4>लौरिया नंदनगढ़</h4>
+                </div>
+            
+        
+                <div class="tourism-card">
+                    <div class="tourism-image">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgodM2qJJnI45n6JBG8kvvX483QBaPf_lrlA&s" alt="अरेराज" onerror="this.src='bihar_tourism/areraj.jpg'">
+                    </div>
+                    <h4>अरेराज</h4>
+                </div>
+                <div class="tourism-card">
+                    <div class="tourism-image">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSf6xuM7FJk81VEsHRN916ePSbblybiJCQx0w&s" alt="सिकरहना" onerror="this.src='bihar_tourism/sikarhana.jpg'">
+                    </div>
+                    <h4>सिकरहना</h4>
+                </div>
+                <div class="tourism-card">
+                    <div class="tourism-image">
+                        <img src="https://traveltoq.wordpress.com/wp-content/uploads/2019/12/b.jpg" alt="लौरिया अशोक स्तंभ" onerror="this.src='bihar_tourism/lauria_ashoka_stambh.jpg'">
+                    </div>
+                    <h4>लौरिया अशोक स्तंभ</h4>
+                </div>
+                <div class="tourism-card">
+                    <div class="tourism-image">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/1/1d/Chanki_garh%2C_West_Champaran.jpg" alt="चांकी गढ़" onerror="this.src='bihar_tourism/chanki_garh.jpg'">
+                    </div>
+                    <h4>चांकी गढ़</h4>
+                </div>
+               
+        
+                <div class="tourism-card">
+                    <div class="tourism-image">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpFDFjVarLJQG-271J0qhGi36F-2d4Uj9R5Q&s" alt="बराबर गुफाएं" onerror="this.src='bihar_tourism/barabar_caves.jpg'">
+                    </div>
+                    <h4>बराबर गुफाएं</h4>
+                </div>
+                <div class="tourism-card">
+                    <div class="tourism-image">
+                        <img src="https://www.pmc.bihar.gov.in/assets/img/patna%20sahib.jpg" alt="गुरुद्वारा हरमंदिर" onerror="this.src='bihar_tourism/gurudwara_harmandir.jpg'">
+                    </div>
+                    <h4>गुरुद्वारा हरमंदिर</h4>
                 </div>
             </div>
+            <p style="text-align: center; margin: 15px 0; font-size: 13px; color: var(--text-light);">कुल <strong>42 पर्यटन स्थल</strong> - प्रमुख धार्मिक, ऐतिहासिक और स्थानीय स्थान</p>
             <button class="action-btn" onclick="alert('सभी पर्यटन स्थल');">
                 <i class="fas fa-map-marked-alt"></i> सभी स्थल देखें
             </button>
@@ -1076,9 +1681,26 @@
                 <li><strong>लोक कला:</strong> मधुबनी, टिकुली; संगीत, नृत्य, त्योहार</li>
                 <li><strong>व्यंजन:</strong> लिट्टी-चोखा, खाजा, ठेकुआ, सत्तू पराठा</li>
             </ul>
-            <div class="image-placeholder">
-                <i class="fas fa-palette" style="margin-right: 10px;"></i>
-                मधुबनी पेंटिंग या छठ पूजा की छवि
+            <div class="image-slider-container">
+                <div class="image-slider">
+                    <div class="slide active">
+                        <img src="#" alt="मधुबनी पेंटिंग" onerror="this.src='bihar_intro/madhubani_painting.jpg'">
+                        <div class="slide-caption">मधुबनी पेंटिंग - बिहार की विश्व प्रसिद्ध कला</div>
+                    </div>
+                    <div class="slide">
+                        <img src="#" alt="छठ पूजा" onerror="this.src='bihar_intro/chhath_puja.jpg'">
+                        <div class="slide-caption">छठ पूजा - बिहार का महापर्व</div>
+                    </div>
+                    <div class="slide">
+                        <img src="#" alt="लिट्टी चोखा" onerror="this.src='bihar_intro/litti_chokha.jpg'">
+                        <div class="slide-caption">लिट्टी-चोखा - बिहार का पारंपरिक व्यंजन</div>
+                    </div>
+                </div>
+                <div class="slider-dots">
+                    <span class="dot active" onclick="currentCultureSlide(1)"></span>
+                    <span class="dot" onclick="currentCultureSlide(2)"></span>
+                    <span class="dot" onclick="currentCultureSlide(3)"></span>
+                </div>
             </div>
             <button class="action-btn" onclick="alert('बिहार की संस्कृति अन्वेषण करें');">
                 <i class="fas fa-theater-masks"></i> बिहार की संस्कृति अन्वेषण करें
@@ -1284,9 +1906,36 @@
                 <li>तिलका मांझी भागलपुर विश्वविद्यालय (TMBU)</li>
                 <li>और अधिक...</li>
             </ul>
-            <div class="image-placeholder">
-                <i class="fas fa-chart-line" style="margin-right: 10px;"></i>
-                स्कूल नामांकन चार्ट इमेज
+            <div class="image-slider-container education-slider">
+                <div class="image-slider">
+                    <div class="slide active">
+                        <img src="#" alt="पटना विश्वविद्यालय" onerror="this.src='bihar_intro/patna_university.jpg'">
+                        <div class="slide-caption">पटना विश्वविद्यालय - 1917 में स्थापित</div>
+                    </div>
+                    <div class="slide">
+                        <img src="#" alt="नालंदा विश्वविद्यालय" onerror="this.src='bihar_intro/nalanda_university.jpg'">
+                        <div class="slide-caption">नालंदा विश्वविद्यालय - आधुनिक शिक्षा केंद्र</div>
+                    </div>
+                    <div class="slide">
+                        <img src="#" alt="मगध विश्वविद्यालय" onerror="this.src='bihar_intro/magadh_university.jpg'">
+                        <div class="slide-caption">मगध विश्वविद्यालय - बोधगया</div>
+                    </div>
+                    <div class="slide">
+                        <img src="#" alt="LNMU दरभंगा" onerror="this.src='bihar_intro/lnmu.jpg'">
+                        <div class="slide-caption">LNMU दरभंगा - मिथिला की शिक्षा</div>
+                    </div>
+                    <div class="slide">
+                        <img src="#" alt="TMBU भागलपुर" onerror="this.src='bihar_intro/tmbu.jpg'">
+                        <div class="slide-caption">TMBU भागलपुर - पूर्वी बिहार का केंद्र</div>
+                    </div>
+                </div>
+                <div class="slider-dots">
+                    <span class="dot active" onclick="currentEducationSlide(1)"></span>
+                    <span class="dot" onclick="currentEducationSlide(2)"></span>
+                    <span class="dot" onclick="currentEducationSlide(3)"></span>
+                    <span class="dot" onclick="currentEducationSlide(4)"></span>
+                    <span class="dot" onclick="currentEducationSlide(5)"></span>
+                </div>
             </div>
             <button class="action-btn" onclick="alert('बिहार में शिक्षा अन्वेषण करें');">
                 <i class="fas fa-school"></i> बिहार में शिक्षा अन्वेषण करें
@@ -1710,6 +2359,158 @@
                 element.classList.add('pulse');
             });
         });
+
+        // Slider Variables
+        let slideIndex = 1;
+        let cultureSlideIndex = 1;
+        let heroSlideIndex = 1;
+        let educationSlideIndex = 1;
+        let heroTimer, slideTimer, cultureTimer, educationTimer;
+        
+        // Hero Slider Functions
+        function showHeroSlides(n) {
+            let heroSlides = document.querySelectorAll('.hero-section .image-slider .slide');
+            let heroDots = document.querySelectorAll('.hero-section .slider-dots .dot');
+            if (n > heroSlides.length) { heroSlideIndex = 1 }
+            if (n < 1) { heroSlideIndex = heroSlides.length }
+            
+            for (let i = 0; i < heroSlides.length; i++) { heroSlides[i].classList.remove('active'); }
+            heroDots.forEach(dot => dot.classList.remove('active'));
+            
+            if (heroSlides[heroSlideIndex - 1]) {
+                heroSlides[heroSlideIndex - 1].classList.add('active');
+            }
+            if (heroDots[heroSlideIndex - 1]) {
+                heroDots[heroSlideIndex - 1].classList.add('active');
+            }
+        }
+        
+        function currentHeroSlide(n) {
+            clearInterval(heroTimer);
+            heroSlideIndex = n;
+            showHeroSlides(heroSlideIndex);
+            heroTimer = setInterval(() => {
+                heroSlideIndex++;
+                showHeroSlides(heroSlideIndex);
+            }, 4000);
+        }
+        
+        // Introduction Slider Functions
+        function showSlides(n) {
+            let introSection = document.querySelector('.content-section:has(.slider-dots span[onclick*="currentSlide"])');
+            if (!introSection) return;
+
+            let slides = introSection.querySelectorAll('.image-slider .slide');
+            let dots = introSection.querySelectorAll('.slider-dots .dot');
+            if (n > slides.length) { slideIndex = 1 }
+            if (n < 1) { slideIndex = slides.length }
+            
+            for (let i = 0; i < slides.length; i++) { slides[i].classList.remove('active'); }
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            if (slides[slideIndex - 1]) {
+                slides[slideIndex - 1].classList.add('active');
+            }
+            if (dots[slideIndex - 1]) {
+                dots[slideIndex - 1].classList.add('active');
+            }
+        }
+        
+        function currentSlide(n) {
+            clearInterval(slideTimer);
+            slideIndex = n;
+            showSlides(slideIndex);
+            slideTimer = setInterval(() => {
+                slideIndex++;
+                showSlides(slideIndex);
+            }, 4000);
+        }
+        
+        // Culture Slider Functions
+        function showCultureSlides(n) {
+            let cultureSection = document.querySelector('.content-section:has(.slider-dots span[onclick*="currentCultureSlide"])'); // This selector is correct
+            if (!cultureSection) return;
+            
+            let slides = cultureSection.querySelectorAll('.image-slider .slide');
+            let dots = cultureSection.querySelectorAll('.slider-dots .dot');
+            if (n > slides.length) { cultureSlideIndex = 1 }
+            if (n < 1) { cultureSlideIndex = slides.length }
+            
+            for (let i = 0; i < slides.length; i++) { slides[i].classList.remove('active'); }
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            if (slides[cultureSlideIndex - 1]) {
+                slides[cultureSlideIndex - 1].classList.add('active');
+            }
+            if (dots[cultureSlideIndex - 1]) {
+                dots[cultureSlideIndex - 1].classList.add('active');
+            }
+        }
+
+        function currentCultureSlide(n) {
+            clearInterval(cultureTimer);
+            cultureSlideIndex = n;
+            showCultureSlides(cultureSlideIndex);
+            cultureTimer = setInterval(() => {
+                cultureSlideIndex++;
+                showCultureSlides(cultureSlideIndex);
+            }, 4000);
+        }
+        
+        // Education Slider Functions
+        function showEducationSlides(n) {
+            let educationSlides = document.querySelectorAll('.education-slider .image-slider .slide');
+            let educationDots = document.querySelectorAll('.education-slider .slider-dots .dot');
+            if (n > educationSlides.length) { educationSlideIndex = 1 }
+            if (n < 1) { educationSlideIndex = educationSlides.length }
+            
+            for (let i = 0; i < educationSlides.length; i++) { educationSlides[i].classList.remove('active'); }
+            educationDots.forEach(dot => dot.classList.remove('active'));
+            
+            if (educationSlides[educationSlideIndex - 1]) {
+                educationSlides[educationSlideIndex - 1].classList.add('active');
+            }
+            if (educationDots[educationSlideIndex - 1]) {
+                educationDots[educationSlideIndex - 1].classList.add('active');
+            }
+        }
+
+        function currentEducationSlide(n) {
+            clearInterval(educationTimer);
+            educationSlideIndex = n;
+            showEducationSlides(educationSlideIndex);
+            educationTimer = setInterval(() => {
+                educationSlideIndex++;
+                // Reset the timer if it's already running to avoid multiple intervals
+                clearInterval(educationTimer);
+                educationTimer = setInterval(() => {
+                    educationSlideIndex++;
+                    showEducationSlides(educationSlideIndex);
+                }, 4000);
+                showEducationSlides(educationSlideIndex);
+            }, 4000);
+        }
+
+        // Auto slide functionality
+        heroTimer = setInterval(() => {
+            heroSlideIndex++;
+            showHeroSlides(heroSlideIndex);
+        }, 4000);
+        
+        slideTimer = setInterval(() => {
+            slideIndex++;
+            showSlides(slideIndex);
+        }, 4000);
+        
+        cultureTimer = setInterval(() => {
+            cultureSlideIndex++;
+            showCultureSlides(cultureSlideIndex);
+        }, 4000);
+        
+        educationTimer = setInterval(() => {
+            educationSlideIndex++;
+            showEducationSlides(educationSlideIndex);
+        }, 4000);
 
         // Smooth scroll for better mobile experience
         document.documentElement.style.scrollBehavior = 'smooth';
